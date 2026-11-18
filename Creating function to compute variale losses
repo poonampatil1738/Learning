@@ -1,0 +1,24 @@
+import numpy as np
+# Mean Squared Error
+def mse(y_true, y_pred):
+    return np.mean((y_true - y_pred) ** 2)
+# Binary Cross Entropy
+def binary_cross_entropy(y_true, y_pred):
+    return -np.mean(y_true*np.log(y_pred) + (1-y_true)*np.log(1-y_pred))
+# Categorical Cross Entropy
+def categorical_cross_entropy(y_true, y_pred):
+    return -np.mean(np.sum(y_true*np.log(y_pred), axis=1))
+# Sample data
+y_true = np.array([1, 0, 1])
+y_pred = np.array([0.9, 0.2, 0.8])
+print("MSE:", mse(y_true, y_pred))
+print("Binary Cross Entropy:", binary_cross_entropy(y_true, y_pred))
+y_true = np.array([[1,0,0], [0,1,0], [0,0,1]])
+y_pred = np.array([[0.8,0.1,0.1], [0.1,0.8,0.1], [0.1,0.2,0.7]])
+print("Categorical Cross Entropy:",
+      categorical_cross_entropy(y_true, y_pred))
+
+Output:
+MSE: 0.029999999999999995
+Binary Cross Entropy: 0.18388253942874858
+Categorical Cross Entropy: 0.26765401552238394
